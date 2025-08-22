@@ -59,15 +59,15 @@ const ArticleDetail: React.FC = () => {
 
       if (header.startsWith('# ')) {
         return null; // Skip main title
-      } else if (header.startsWith('## ')) {
+      } else       if (header.startsWith('## ')) {
         return (
-          <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+          <h2 key={index} className="text-2xl font-bold text-foreground mt-8 mb-4">
             {header.replace('## ', '')}
           </h2>
         );
       } else if (header.startsWith('### ')) {
         return (
-          <h3 key={index} className="text-xl font-semibold text-gray-800 mt-6 mb-3">
+          <h3 key={index} className="text-xl font-semibold text-foreground mt-6 mb-3">
             {header.replace('### ', '')}
           </h3>
         );
@@ -94,7 +94,7 @@ const ArticleDetail: React.FC = () => {
         return (
           <ul key={index} className="list-disc list-inside mb-4 space-y-2">
             {items.map((item, itemIndex) => (
-              <li key={itemIndex} className="text-gray-700 leading-relaxed">
+              <li key={itemIndex} className="text-muted-foreground leading-relaxed">
                 {item.replace(/^[-*]\s*/, '')}
               </li>
             ))}
@@ -108,7 +108,7 @@ const ArticleDetail: React.FC = () => {
         return (
           <ol key={index} className="list-decimal list-inside mb-4 space-y-2">
             {items.map((item, itemIndex) => (
-              <li key={itemIndex} className="text-gray-700 leading-relaxed">
+              <li key={itemIndex} className="text-muted-foreground leading-relaxed">
                 {item.replace(/^\d+\.\s*/, '')}
               </li>
             ))}
@@ -118,7 +118,7 @@ const ArticleDetail: React.FC = () => {
       
       // Regular paragraph
       return (
-        <p key={index} className="text-gray-700 leading-relaxed mb-4">
+        <p key={index} className="text-muted-foreground leading-relaxed mb-4">
           {paragraph.trim()}
         </p>
       );
@@ -127,16 +127,16 @@ const ArticleDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
+            <div className="h-8 bg-muted rounded w-3/4 mb-4"></div>
+            <div className="h-4 bg-muted rounded w-1/2 mb-8"></div>
             <div className="space-y-4">
-              <div className="h-4 bg-gray-200 rounded"></div>
-              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-              <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+              <div className="h-4 bg-muted rounded"></div>
+              <div className="h-4 bg-muted rounded w-5/6"></div>
+              <div className="h-4 bg-muted rounded w-4/6"></div>
             </div>
           </div>
         </div>
@@ -146,13 +146,13 @@ const ArticleDetail: React.FC = () => {
 
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-8">
           <Card>
             <CardContent className="text-center py-12">
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-              <p className="text-gray-600 mb-6">The article you're looking for doesn't exist.</p>
+              <h1 className="text-2xl font-bold text-foreground mb-4">Article Not Found</h1>
+              <p className="text-muted-foreground mb-6">The article you're looking for doesn't exist.</p>
               <Link to="/articles">
                 <Button>
                   <ArrowLeft className="w-4 h-4 mr-2" />
@@ -167,13 +167,13 @@ const ArticleDetail: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Article Header */}
-      <div className="bg-white border-b">
+      <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border-b border-border">
         <div className="container mx-auto px-4 py-8">
-          <Link to="/articles" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4">
+          <Link to="/articles" className="inline-flex items-center text-primary hover:text-primary/80 mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Articles
           </Link>
@@ -183,11 +183,11 @@ const ArticleDetail: React.FC = () => {
               {article.category}
             </Badge>
             
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 className="text-4xl font-bold text-foreground mb-4 leading-tight">
               {article.title}
             </h1>
             
-            <div className="flex items-center space-x-6 text-gray-600 text-sm">
+            <div className="flex items-center space-x-6 text-muted-foreground text-sm">
               <div className="flex items-center">
                 <Clock className="w-4 h-4 mr-2" />
                 {article.readTime} min read
@@ -215,9 +215,9 @@ const ArticleDetail: React.FC = () => {
           </Card>
           
           {/* Article Footer */}
-          <div className="mt-8 pt-8 border-t">
+          <div className="mt-8 pt-8 border-t border-border">
             <div className="flex justify-between items-center">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Last updated: {new Date(article.updatedAt).toLocaleDateString()}
               </div>
               <Link to="/articles">
