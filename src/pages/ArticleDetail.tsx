@@ -59,17 +59,23 @@ const ArticleDetail: React.FC = () => {
 
       if (header.startsWith('# ')) {
         return null; // Skip main title
-      } else       if (header.startsWith('## ')) {
+      } else if (header.startsWith('## ')) {
         return (
-          <h2 key={index} className="text-2xl font-bold text-foreground mt-8 mb-4">
-            {header.replace('## ', '')}
-          </h2>
+          <div key={index}>
+            <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">
+              {header.replace('## ', '')}
+            </h2>
+            {body && <div className="mb-6">{renderBodyContent(body)}</div>}
+          </div>
         );
       } else if (header.startsWith('### ')) {
         return (
-          <h3 key={index} className="text-xl font-semibold text-foreground mt-6 mb-3">
-            {header.replace('### ', '')}
-          </h3>
+          <div key={index}>
+            <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">
+              {header.replace('### ', '')}
+            </h3>
+            {body && <div className="mb-4">{renderBodyContent(body)}</div>}
+          </div>
         );
       } else {
         return (
