@@ -117,6 +117,47 @@ const Articles: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 py-8">
+        {/* TEMPORARY: Manual Article Generation Button */}
+        <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+          <div className="text-center">
+            <h3 className="text-lg font-semibold text-blue-900 mb-2">🧪 Test Article Generation</h3>
+            <p className="text-sm text-blue-700 mb-4">
+              Generate a new article manually for testing purposes
+            </p>
+            <Button 
+              onClick={async () => {
+                try {
+                  const response = await fetch(buildApiUrl('/api/articles/generate-hourly'), {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  });
+                  
+                  if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                      alert(`✅ Article generated successfully!\n\nTitle: ${result.article.title}\nCategory: ${result.article.category}\n\nThe page will refresh in 3 seconds to show the new article.`);
+                      setTimeout(() => window.location.reload(), 3000);
+                    } else {
+                      alert(`⚠️ ${result.message}`);
+                    }
+                  } else {
+                    const error = await response.json();
+                    alert(`❌ Error: ${error.error || 'Failed to generate article'}`);
+                  }
+                } catch (error) {
+                  console.error('Error generating article:', error);
+                  alert('❌ Error: Failed to connect to the backend server');
+                }
+              }}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              🚀 Generate New Article
+            </Button>
+          </div>
+        </div>
+
         {/* Search and Filters */}
         <div className="mb-8 space-y-4">
           <div className="flex flex-col sm:flex-row gap-4">
