@@ -10,6 +10,7 @@ import HomeEquity from "./pages/HomeEquity";
 import CDRates from "./pages/CDRates";
 import CreditCards from "./pages/CreditCards";
 import Articles from "./pages/Articles";
+import ArticleDetail from "./pages/ArticleDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/cd-rates" element={<CDRates />} />
             <Route path="/credit-cards" element={<CreditCards />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:slug" element={<ArticleDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
