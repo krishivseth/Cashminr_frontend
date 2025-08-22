@@ -78,15 +78,15 @@ const Articles: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div className="h-8 bg-muted rounded w-1/3"></div>
+            <div className="h-4 bg-muted rounded w-1/2"></div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="h-64 bg-gray-200 rounded"></div>
+                <div key={i} className="h-64 bg-muted rounded"></div>
               ))}
             </div>
           </div>
@@ -96,25 +96,32 @@ const Articles: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Financial Education Articles
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Expert insights and practical advice to help you make informed financial decisions
-          </p>
+      {/* Header */}
+      <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 border-b border-border">
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center max-w-3xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+              Financial Education
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Made Simple
+            </p>
+            <p className="text-lg text-muted-foreground mt-2">
+              Expert insights and practical advice to help you make informed financial decisions
+            </p>
+          </div>
         </div>
+      </div>
 
+      <div className="container mx-auto px-4 py-8">
         {/* Search and Filters */}
         <div className="mb-8 space-y-4">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <Input
                 placeholder="Search articles..."
                 value={searchTerm}
@@ -137,7 +144,7 @@ const Articles: React.FC = () => {
           </div>
           
           {filteredArticles.length > 0 && (
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Showing {filteredArticles.length} of {articles.length} articles
             </p>
           )}
@@ -147,8 +154,8 @@ const Articles: React.FC = () => {
         {filteredArticles.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No articles found</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-semibold mb-2">No articles found</h3>
+              <p className="text-muted-foreground">
                 {searchTerm || selectedCategory !== 'all' 
                   ? 'Try adjusting your search or filters'
                   : 'No articles available yet. Articles are generated automatically every hour.'
@@ -166,7 +173,7 @@ const Articles: React.FC = () => {
                       <Badge variant="secondary" className="text-xs">
                         {article.category}
                       </Badge>
-                      <div className="flex items-center text-xs text-gray-500">
+                      <div className="flex items-center text-xs text-muted-foreground">
                         <Clock className="w-3 h-3 mr-1" />
                         {article.readTime} min
                       </div>
@@ -176,10 +183,10 @@ const Articles: React.FC = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                    <p className="text-muted-foreground text-sm line-clamp-3 mb-4">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center">
                         <Calendar className="w-3 h-3 mr-1" />
                         {new Date(article.createdAt).toLocaleDateString()}
